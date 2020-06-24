@@ -47,7 +47,7 @@ class CardProduct extends React.Component {
     render(){
     return (
       <ContainerCard>
-        <img src={this.props.url} alt="" />
+        <img src={this.props.url} alt="" width="100%"/>
         <p>{this.props.title}</p>
         <p>USD {this.props.price}</p>
         <button>Adicionar ao carrinho</button>
