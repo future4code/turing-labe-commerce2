@@ -15,7 +15,13 @@ class Filter extends React.Component {
     render(){
     return (
       <ContainerFilter>
-        ola
+        <h1>Filtros:</h1>
+        <label>Valor Maximo:</label>
+        <input type="number" />
+        <label>Valor Mínimo:</label>
+        <input type="number" />  
+        <label>Buscar produto</label>
+        <input />    
       </ContainerFilter>
     );
     }

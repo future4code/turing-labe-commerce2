@@ -15,7 +15,8 @@ class Cart extends React.Component {
     render(){
     return (
       <ContainerFilter>
-        hello
+        <h1>Carrinho: </h1>
+        <p>Total: <b>USD 0</b></p>
       </ContainerFilter>
     );
     }
