@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const ContainerFilter = styled.div`
 display: flex;
@@ -16,7 +16,7 @@ class Cart extends React.Component {
     return (
       <ContainerFilter>
         <h1>Carrinho: </h1>
-        <p>Total: <b>USD 0</b></p>
+        <p>Total: <b>USD {this.props.total}</b></p>
       </ContainerFilter>
     );
     }
