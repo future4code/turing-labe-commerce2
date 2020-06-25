@@ -75,7 +75,6 @@ const listProducts = [
     price: 10,
     url: 'https://picsum.photos/200/200?a=8',
   },
-  
 ]
 
 class Home extends React.Component {
@@ -83,11 +82,10 @@ class Home extends React.Component {
       products: listProducts
     }
     render(){
-      console.log(this.state.products);
     return (
       <ContainerHome>
         <HomeHeader>
-    <span>Quantidade de Produtos: {this.state.products.length}</span>
+            <span>Quantidade de Produtos: {this.state.products.length}</span>
             <select>
                 <option value="ordem crescente">Preço: Crescente</option>
                 <option value="ordem decrescente">Preço: Decrescente</option>
@@ -100,6 +98,7 @@ class Home extends React.Component {
                     title={product.title}
                     price={product.price}
                     url={product.url}
+                    key={index}
                   />
                 )
               })}

@@ -32,9 +32,6 @@ class Filter extends React.Component {
   
 
   render(){
-    // console.log(this.state.inputValorMax);
-    // console.log(this.state.inputValorMin);
-    // console.log(this.state.inputBusca);
     return (
       <ContainerFilter>
         <h1>Filtros:</h1>
