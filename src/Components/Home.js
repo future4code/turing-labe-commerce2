@@ -11,6 +11,47 @@ margin: 0 8px;
 box-sizing: border-box;
 flex:1;
 `
+const ContainerCard = styled.div`
+    border: 1px dashed orange;
+    padding: 4px;
+
+    > button {
+    z-index: 1;
+    position: relative;
+    font-size: inherit;
+    font-family: inherit;
+    color: white;
+    padding: 0.5em 1em;
+    outline: none;
+    border: none;
+    background-color: hsl(236, 32%, 26%);
+    overflow: hidden;
+    transition: color 0.4s ease-in-out;
+    width: 100%;
+}
+    > button::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: #3cefff;
+    transform-origin: center;
+    transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
+    transition: transform 0.45s ease-in-out;
+}
+
+> button:hover {
+  cursor: pointer;
+  color: #161616;
+}   
+  > button:hover::before {
+  transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
+}
+`
 
 const HomeHeader = styled.div`
 display:flex;
@@ -26,82 +67,32 @@ const ContainerProdutos = styled.div`
   margin-top: 8px;
 `
 
-const listProducts = [
-  {
-    id: 1,
-    title: 'Foguete Lucas',
-    price: 50,
-    url: 'https://picsum.photos/200/200?a=1',
-  },
-  {
-    id: 2,
-    title: 'Foguete Jailsom',
-    price: 60,
-    url: 'https://picsum.photos/200/200?a=2',
-  },
-  {
-    id: 3,
-    title: 'Foguete Diego',
-    price: 70,
-    url: 'https://picsum.photos/200/200?a=3',
-  },
-  {
-    id: 4,
-    title: 'Foguete Vinicius',
-    price: 80,
-    url: 'https://picsum.photos/200/200?a=4',
-  },
-  {
-    id: 5,
-    title: 'Foguete Miranda',
-    price: 40,
-    url: 'https://picsum.photos/200/200?a=5',
-  },
-  {
-    id: 6,
-    title: 'Foguete Nogueira',
-    price: 30,
-    url: 'https://picsum.photos/200/200?a=6',
-  },
-  {
-    id: 7,
-    title: 'Foguete Miyabara',
-    price: 20,
-    url: 'https://picsum.photos/200/200?a=7',
-  },
-  {
-    id: 8,
-    title: 'Foguete Fredeanelle',
-    price: 10,
-    url: 'https://picsum.photos/200/200?a=8',
-  },
-]
-
 class Home extends React.Component {
-    state = {
-      products: listProducts
-    }
     render(){
     return (
       <ContainerHome>
         <HomeHeader>
-            <span>Quantidade de Produtos: {this.state.products.length}</span>
+            <span>Quantidade de Produtos: {this.props.productsLenght}</span>
             <select>
                 <option value="ordem crescente">Preço: Crescente</option>
                 <option value="ordem decrescente">Preço: Decrescente</option>
             </select>
         </HomeHeader>
         <ContainerProdutos>
-              {this.state.products.map((product, index) => {
+              {this.props.products.map((product, index) => {
                 return (
-                  <CardProduct 
-                    title={product.title}
-                    price={product.price}
-                    url={product.url}
-                    key={index}
-                  />
+                  <ContainerCard>
+                    <CardProduct 
+                      key={index}
+                      title={product.title}
+                      price={product.price}
+                      url={product.url}
+                    />
+                    <button onClick={this.props.onClickAddProduct}>Adicionar ao carrinho</button>
+                  </ContainerCard>
                 )
-              })}
+                })
+              }
         </ContainerProdutos>
       </ContainerHome>
     );

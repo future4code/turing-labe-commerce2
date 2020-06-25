@@ -12,6 +12,7 @@ width: 20%;
 `
 
 class Cart extends React.Component {
+    
     render(){
     return (
       <ContainerFilter>
