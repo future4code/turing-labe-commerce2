@@ -88,7 +88,7 @@ class Home extends React.Component {
                       price={product.price}
                       url={product.url}
                     />
-                    <button onClick={this.props.onClickAddProduct}>Adicionar ao carrinho</button>
+                    <button onClick={() => this.props.onClickAddProduct(product.id)}>Adicionar ao carrinho</button>
                   </ContainerCard>
                 )
                 })
