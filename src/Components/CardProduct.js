@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
+import Cart from './Cart'
+
 
 const ContainerCard = styled.div`
     border: 1px dashed orange;
@@ -44,13 +46,26 @@ const ContainerCard = styled.div`
 `
 
 class CardProduct extends React.Component {
+  state={
+    total:0,
+  }
+
+  onClickAddProduct = () => {
+    this.setState({ total: this.props.price });
+    
+    return (
+      <Cart total={this.state.total}/>
+    )
+  }
+
     render(){
+      console.log(this.state.total)
     return (
       <ContainerCard>
         <img src={this.props.url} alt="" width="100%"/>
         <p>{this.props.title}</p>
         <p>USD {this.props.price}</p>
-        <button>Adicionar ao carrinho</button>
+        <button onClick={this.onClickAddProduct}>Adicionar ao carrinho</button>
       </ContainerCard>
     );
     }

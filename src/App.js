@@ -27,7 +27,7 @@ display: flex;
 `
 
 const ButtonImage = styled.img`
-width: 100%;
+width: 90%;
 `
 
 class App extends React.Component {
