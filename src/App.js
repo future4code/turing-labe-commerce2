@@ -86,24 +86,41 @@ class App extends React.Component {
     inputValorMin: '',
     inputValorMax: '' ,
     somaTotal: 0,
-    products: listProducts
+    products: listProducts,
+    selectedProduct: []
   }
   
   onClickCart = () => {
     this.setState({cart: !this.state.cart})
   }
 
-  onClickAddProduct = () => {
-    const totalValue = this.state.products.price;
-    this.setState({somaTotal: totalValue})
-    console.log(this.state.products.price)
-  }
+  onClickAddProduct = (id) => {
+    const preco = this.state.products.filter((product) =>{
+      if(id === product.id){ 
+        this.setState({somaTotal: this.state.somaTotal + product.price}) 
+        return this.state.somaTotal         
+      } 
+    })
   
+    const add = this.state.products.filter((product) =>{
+      if(id === product.id){
+        const titulo = this.state.product
+        // const listaDeProdutos = [...this.state.products, add]
+        // this.setState({selectedProduct: listaDeProdutos})
+        console.log(titulo)
+        return titulo
+      } 
+    })  
+  }
+
   render(){
     const renderiza = () => {
       if(this.state.cart){
         return (
-          <Cart total = {this.state.somaTotal}/>
+          <Cart 
+            total = {this.state.somaTotal}
+            selectedProduct = {this.state.selectedProduct.title}
+          />
         )
       }
     }
