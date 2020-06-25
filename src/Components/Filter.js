@@ -12,19 +12,41 @@ width: 20%;
 `
 
 class Filter extends React.Component {
-    render(){
+  state ={
+    inputValorMin: '',
+    inputValorMax: '',
+    inputBusca: ''
+  };
+
+  handleInputChangeMin = event =>{
+    this.setState({inputValorMin: event.target.value})
+  };
+
+  handleInputChangeMax = event =>{
+    this.setState({inputValorMax: event.target.value})
+  };
+
+  handleInputChangeSearch = event =>{
+    this.setState({inputBusca: event.target.value})
+  }
+  
+
+  render(){
+    // console.log(this.state.inputValorMax);
+    // console.log(this.state.inputValorMin);
+    // console.log(this.state.inputBusca);
     return (
       <ContainerFilter>
         <h1>Filtros:</h1>
         <label>Valor Maximo:</label>
-        <input type="number" />
+        <input type="number" value={this.state.inputValorMax} onChange={this.handleInputChangeMax}/>
         <label>Valor Mínimo:</label>
-        <input type="number" />  
+        <input type="number" value={this.state.inputValorMin} onChange={this.handleInputChangeMin}/>  
         <label>Buscar produto</label>
-        <input />    
+        <input type="text" value={this.state.inputBusca} onChange={this.handleInputChangeSearch} />    
       </ContainerFilter>
     );
-    }
   }
+}
   
-  export default Filter;
+export default Filter;
