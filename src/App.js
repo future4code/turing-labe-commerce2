@@ -30,12 +30,10 @@ const ButtonImage = styled.img`
 width: 100%;
 `
 
-
 class App extends React.Component {
   state ={
     cart: false
   }
-
   
   onClickCart = () => {
     this.setState({cart: !this.state.cart})
