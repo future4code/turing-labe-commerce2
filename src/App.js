@@ -32,12 +32,15 @@ width: 100%;
 
 class App extends React.Component {
   state ={
-    cart: false
+    cart: false,
+    inputValorMin: '',
+    inputValorMax: ''  
   }
   
   onClickCart = () => {
     this.setState({cart: !this.state.cart})
   }
+
   
   render(){
     const renderiza = () => {
@@ -49,7 +52,9 @@ class App extends React.Component {
     }
     return (
       <ContainerPai>
-        <Filter />
+        <Filter  
+        
+        />
         <Home />
         {renderiza()}
           <ButtonCart onClick={this.onClickCart}>
