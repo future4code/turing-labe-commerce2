@@ -10,14 +10,6 @@ padding: 16px;
 box-sizing: border-box;
 width: 20%;
 `
-// const AllItems = styled.div`
-// display: flex;
-// flex-direction: row;
-// `
-
-// const EachItem = styled.p`
-// background-color:gray;
-// `
 
 class Cart extends React.Component {
     
@@ -25,7 +17,7 @@ class Cart extends React.Component {
     return (
       <ContainerFilter>
         <h1>Carrinho: </h1>
-          <p> {this.props.selectedProduct} </p>
+        {this.props.selectedProduct}
         <p>Total: <b>USD {this.props.total}</b></p>
       </ContainerFilter>
     );

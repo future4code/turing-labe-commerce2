@@ -3,9 +3,7 @@ import styled from 'styled-components'
 
 
 const ContainerCard = styled.div`
-
     padding: 4px;
-
 `
 
 class CardProduct extends React.Component {

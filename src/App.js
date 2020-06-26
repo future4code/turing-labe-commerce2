@@ -29,6 +29,17 @@ display: flex;
 const ButtonImage = styled.img`
 width: 90%;
 `
+
+const CartItem = styled.p`
+margin: 2px;
+border-bottom: 1px dashed black;
+padding-bottom: 4px;
+`
+
+const Limpar = styled.button`
+background-color: blue;
+`
+
 const listProducts = [
   {
     id: 1,
@@ -87,31 +98,68 @@ class App extends React.Component {
     inputValorMax: '' ,
     somaTotal: 0,
     products: listProducts,
-    selectedProduct: []
+    title: '',
+    selectedProduct: [ //só produtos selecionados pelo usuário
+      {
+        id: '',
+        title: "",    //titulo no elemento do objeto
+        timesInCart: ""
+      }
+    ]
   }
   
   onClickCart = () => {
     this.setState({cart: !this.state.cart})
   }
 
+  // onClickAddProduct = (id) => {
+  //   const preco = this.state.products.filter((product) =>{//lista de produtos
+  //     if(id === product.id){ 
+  //       this.setState({somaTotal: this.state.somaTotal + product.price})
+  //       const newTitle = { //guardando o titulo em um objeto
+  //         id: product.id,
+  //         title: product.title,    //titulo no elemento do objeto
+  //         timesInCart: 1
+  //       }
+  //       const itensCarrinho = this.state.selectedProduct.filter((product) =>{//só produtos selecionados pelo usuário
+  //         if(id === product.id){
+  //           newTitle.timesInCart += 1
+  //         }
+  //       })
+  //         const newProduct = {newTitle}  //novo array que recebe o novo objeto     
+  //         this.setState({selectedProduct: newProducts}) //add ao nosso antigo array                  
+  //       return this.state.somaTotal         
+  //     }
+  //   })
+  // }
+
   onClickAddProduct = (id) => {
-    const preco = this.state.products.filter((product) =>{
+    const preco = this.state.products.filter((product) =>{//lista de produtos
       if(id === product.id){ 
-        this.setState({somaTotal: this.state.somaTotal + product.price}) 
+        this.setState({somaTotal: this.state.somaTotal + product.price})
+        const newTitle = { //guardando o titulo em um objeto
+          id: product.id,
+          title: product.title,    //titulo no elemento do objeto
+          timesInCart: 1
+        }
+        const itensCarrinho = this.state.selectedProduct.filter((product) =>{//só produtos selecionados pelo usuário
+          if(id === product.id){
+            newTitle.timesInCart += 1
+          }
+        })
+          const newProductsArray = [newTitle, ...this.state.selectedProduct]  //novo array que recebe o novo objeto     
+          this.setState({selectedProduct: newProductsArray}) //add ao nosso antigo array                  
         return this.state.somaTotal         
-      } 
+      }
     })
-  
-    const add = this.state.products.filter((product) =>{
-      if(id === product.id){
-        const titulo = this.state.product
-        // const listaDeProdutos = [...this.state.products, add]
-        // this.setState({selectedProduct: listaDeProdutos})
-        console.log(titulo)
-        return titulo
-      } 
-    })  
   }
+
+  onClickClear = (id) => {
+    const lipezaProfunda = this.state.selectedProduct.filter(item => {//passa em todos os produtos do carrinho
+      return item.id !== id;
+    });
+    this.setState({selectedProduct: lipezaProfunda});//pega o array vazio e atribui a lista de produtos do carrinho
+  };
 
   render(){
     const renderiza = () => {
@@ -119,12 +167,22 @@ class App extends React.Component {
         return (
           <Cart 
             total = {this.state.somaTotal}
-            selectedProduct = {this.state.selectedProduct.title}
+
+            selectedProduct = {this.state.selectedProduct.map((produto, index) => { //envia o titulo no estado             
+              if(produto.id !== ''){
+                return <CartItem key={index}>
+                <strong>{produto.timesInCart}x </strong> 
+                <strong>{produto.title} </strong>
+                <Limpar onClick={() => this.onClickClear(produto.id)}>X</Limpar>
+              </CartItem>
+              }
+
+            })}
+
           />
         )
       }
     }
-
     return (
       <ContainerPai>
         <Filter  
