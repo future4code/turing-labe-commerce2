@@ -97,7 +97,7 @@ class App extends React.Component {
     inputValorMin: '',
     inputValorMax: '' ,
     somaTotal: 0,
-    ordemProducts:'',
+    ordemProducts:'crescente',
     products: listProducts,
     title: '',
     selectedProduct: [ //só produtos selecionados pelo usuário
@@ -165,7 +165,7 @@ class App extends React.Component {
 
   onChangeOrdemProdutos = (event) => {
     this.setState({ordemProducts: event.target.value})
-    switch (this.state.ordemProducts){
+    switch (this.state.ordemProducts){  
       case 'crescente':
         return this.setState({products: this.state.products.sort(function(a, b){
           return b.price - a.price
@@ -175,7 +175,7 @@ class App extends React.Component {
           return a.price - b.price
         })})
       default:
-        return this.state.products
+        return this.setState({products: this.state.products})
     }
   }
 
