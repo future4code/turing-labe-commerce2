@@ -97,6 +97,7 @@ class App extends React.Component {
     inputValorMin: '',
     inputValorMax: '' ,
     somaTotal: 0,
+    ordemProducts:'crescente',
     products: listProducts,
     title: '',
     selectedProduct: [
@@ -152,6 +153,22 @@ class App extends React.Component {
     this.setState({selectedProduct: limpezaProfunda});//pega o array vazio e atribui a lista de produtos do carrinho
   };
 
+  onChangeOrdemProdutos = (event) => {
+    this.setState({ordemProducts: event.target.value})
+    switch (this.state.ordemProducts){  
+      case 'crescente':
+        return this.setState({products: this.state.products.sort(function(a, b){
+          return b.price - a.price
+        })})
+      case 'decrescente':
+        return this.setState({products: this.state.products.sort(function(a, b){
+          return a.price - b.price
+        })})
+      default:
+        return this.setState({products: this.state.products})
+    }
+  }
+
   render(){
     const renderiza = () => {
 
@@ -182,6 +199,9 @@ class App extends React.Component {
         products={this.state.products}
         productsLenght={this.state.products.length}
         onClickAddProduct={this.onClickAddProduct}
+        onChangeOrdemProdutos={this.onChangeOrdemProdutos}
+        ordemProducts={this.state.ordemProducts}
+
         />
         {renderiza()}
           <ButtonCart onClick={this.onClickCart}>
