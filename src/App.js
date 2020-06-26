@@ -184,7 +184,7 @@ class App extends React.Component {
         return (
           <Cart 
             total = {this.state.somaTotal}
-
+  
             selectedProduct = {this.state.selectedProduct.map((produto, index) => { //envia o titulo no estado             
               if(produto.id !== ''){
                 return <CartItem key={index}>
