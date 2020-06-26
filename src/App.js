@@ -160,7 +160,6 @@ class App extends React.Component {
       return item.id !== id;
     });
     this.setState({selectedProduct: lipezaProfunda});//pega o array vazio e atribui a lista de produtos do carrinho
-    this.setState({somaTotal: 0})
   };
 
   onChangeOrdemProdutos = (event) => {
@@ -194,9 +193,7 @@ class App extends React.Component {
                 <Limpar onClick={() => this.onClickClear(produto.id)}>X</Limpar>
               </CartItem>
               }
-
             })}
-
           />
         )
       }
