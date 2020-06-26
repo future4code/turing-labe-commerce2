@@ -100,39 +100,29 @@ class App extends React.Component {
     ordemProducts:'crescente',
     products: listProducts,
     title: '',
-    selectedProduct: [ //só produtos selecionados pelo usuário
+    selectedProduct: [
       {
-        id: '',
-        title: "",    //titulo no elemento do objeto
-        timesInCart: ""
+        id: ''
       }
-    ]
+    ] //só produtos selecionados pelo usuário
   }
   
   onClickCart = () => {
     this.setState({cart: !this.state.cart})
   }
 
-  // onClickAddProduct = (id) => {
-  //   const preco = this.state.products.filter((product) =>{//lista de produtos
-  //     if(id === product.id){ 
-  //       this.setState({somaTotal: this.state.somaTotal + product.price})
-  //       const newTitle = { //guardando o titulo em um objeto
-  //         id: product.id,
-  //         title: product.title,    //titulo no elemento do objeto
-  //         timesInCart: 1
-  //       }
-  //       const itensCarrinho = this.state.selectedProduct.filter((product) =>{//só produtos selecionados pelo usuário
-  //         if(id === product.id){
-  //           newTitle.timesInCart += 1
-  //         }
-  //       })
-  //         const newProduct = {newTitle}  //novo array que recebe o novo objeto     
-  //         this.setState({selectedProduct: newProducts}) //add ao nosso antigo array                  
-  //       return this.state.somaTotal         
-  //     }
-  //   })
-  // }
+
+
+  deletarMensagem = mensagemParaDeletar => {
+    const novaListaDeMensagem = this.state.arrayMensagem.filter(item => {
+        return item.mensagem !== mensagemParaDeletar;
+    });
+
+    this.setState({
+        arrayMensagem: novaListaDeMensagem
+    });
+
+  };
 
   onClickAddProduct = (id) => {
     const preco = this.state.products.filter((product) =>{//lista de produtos
@@ -155,11 +145,12 @@ class App extends React.Component {
     })
   }
 
+
   onClickClear = (id) => {
-    const lipezaProfunda = this.state.selectedProduct.filter(item => {//passa em todos os produtos do carrinho
+    const limpezaProfunda = this.state.selectedProduct.filter(item => {//passa em todos os produtos do carrinho
       return item.id !== id;
     });
-    this.setState({selectedProduct: lipezaProfunda});//pega o array vazio e atribui a lista de produtos do carrinho
+    this.setState({selectedProduct: limpezaProfunda});//pega o array vazio e atribui a lista de produtos do carrinho
   };
 
   onChangeOrdemProdutos = (event) => {
@@ -181,24 +172,24 @@ class App extends React.Component {
   render(){
     const renderiza = () => {
 
-      if(this.state.cart){
-        return (
-          <Cart 
-            total = {this.state.somaTotal}
-  
-            selectedProduct = {this.state.selectedProduct.map((produto, index) => { //envia o titulo no estado             
-              if(produto.id !== ''){
-                return <CartItem key={index}>
-                <strong>{produto.timesInCart}x </strong> 
-                <strong>{produto.title} </strong>
-                <Limpar onClick={() => this.onClickClear(produto.id)}>X</Limpar>
-              </CartItem>
-              }
-            })}
-          />
-        )
-      }
+    if(this.state.cart){
+      return (
+        <Cart 
+          total = {this.state.somaTotal}
+
+          selectedProduct = {this.state.selectedProduct.map((produto, index) => { //envia o titulo no estado             
+            if(produto.id !== ''){
+              return <CartItem key={index}>
+              <strong>{produto.timesInCart}x </strong> 
+              <strong>{produto.title} </strong>
+              <Limpar onClick={() => this.onClickClear(produto.id)}>X</Limpar>
+            </CartItem>
+            }
+          })}
+        />
+      )
     }
+  }
     return (
       <ContainerPai>
         <Filter  
