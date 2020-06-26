@@ -180,6 +180,7 @@ class App extends React.Component {
 
   render(){
     const renderiza = () => {
+      
       if(this.state.cart){
         return (
           <Cart 
