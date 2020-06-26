@@ -68,14 +68,15 @@ const ContainerProdutos = styled.div`
 `
 
 class Home extends React.Component {
+
     render(){
     return (
       <ContainerHome>
         <HomeHeader>
-            <span>Quantidade de Produtos: {this.props.productsLenght}</span>
-            <select>
-                <option value="ordem crescente">Preço: Crescente</option>
-                <option value="ordem decrescente">Preço: Decrescente</option>
+            <p>Quantidade de Produtos: {this.props.productsLenght}</p>
+            <select value ={this.props.ordemProducts} onChange={this.props.onChangeOrdemProdutos}>
+                <option value="crescente">Preço: Crescente</option>
+                <option value="decrescente">Preço: Decrescente</option>
             </select>
         </HomeHeader>
         <ContainerProdutos>
@@ -88,7 +89,7 @@ class Home extends React.Component {
                       price={product.price}
                       url={product.url}
                     />
-                    <button onClick={() => this.props.onClickAddProduct(product.id)}>Adicionar ao carrinho</button>
+                    <button z-index={1000} onClick={() => this.props.onClickAddProduct(product.id)}>Adicionar ao carrinho</button>
                   </ContainerCard>
                 )
                 })
